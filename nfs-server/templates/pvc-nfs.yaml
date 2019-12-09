@@ -1,0 +1,12 @@
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-pvc-{{ include "nfs-server.fullname" . }}
+  labels:
+    demo: nfs-pv-provisioning
+spec:
+  accessModes: [ "ReadWriteOnce" ]
+  resources:
+    requests:
+      storage: {{ .Values.volume.nfsStorageSize }}

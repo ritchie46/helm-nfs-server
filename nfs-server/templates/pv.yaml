@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "nfs-server.fullname" . }}
+spec:
+  capacity:
+    storage: {{ .Values.volume.storageSize }}
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: {{ include "nfs-server.fullname" . }}.default.svc.cluster.local
+    path: "/"
